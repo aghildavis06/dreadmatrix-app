@@ -1,0 +1,2082 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./images/favicon.png" />
+    <title>About — Dread Matrix Software Engineering</title>
+    <meta
+      name="description"
+      content="Meet the team behind Dread Matrix. Ex-Google, Stripe, Shopify engineers building scalable software for ambitious companies since 2026."
+    />
+    <link rel="canonical" href="https://Dread Matrix.dev/about" />
+    <meta
+      property="og:title"
+      content="About Dread Matrix — Engineering Scalable Software"
+    />
+    <meta
+      property="og:description"
+      content="The story, people, and values behind Dread Matrix's engineering agency."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #080d1a;
+        --bg2: #0d1424;
+        --surface: #111c30;
+        --surface2: #172238;
+        --accent: #00ff88;
+        --accent2: #7c3aed;
+        --accent3: #f43f5e;
+        --text: #e8e8f0;
+        --muted: #6b7a99;
+        --border: rgba(255, 255, 255, 0.07);
+        --font-display: "Bebas Neue", sans-serif;
+        --font-body: "DM Sans", sans-serif;
+        --font-mono: "Space Mono", monospace;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        overflow-x: hidden;
+        cursor: none;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ── CURSOR ── */
+      #cursor-dot {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          transform 0.1s,
+          background 0.2s;
+      }
+      #cursor-ring {
+        position: fixed;
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid rgba(0, 255, 136, 0.4);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.25s,
+          height 0.25s,
+          opacity 0.2s;
+      }
+      body:has(a:hover) #cursor-ring,
+      body:has(button:hover) #cursor-ring {
+        width: 56px;
+        height: 56px;
+        opacity: 0.6;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 48px;
+        background: rgba(8, 13, 26, 0.88);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+      }
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+      }
+      .nav-links a {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .nav-links a.active {
+        color: var(--accent);
+      }
+      .nav-cta {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 10px 22px;
+        border: 1.5px solid var(--accent);
+        color: var(--accent);
+        background: transparent;
+        cursor: none;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .nav-cta:hover {
+        background: var(--accent);
+        color: var(--bg);
+      }
+      .nav-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text);
+        cursor: none;
+        font-size: 1.2rem;
+      }
+
+      /* ── HERO ── */
+      #hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0 48px 80px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #hero-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+      .hero-year-marker {
+        position: absolute;
+        top: 120px;
+        right: 48px;
+        font-family: var(--font-display);
+        font-size: clamp(6rem, 14vw, 16rem);
+        color: rgba(255, 255, 255, 0.03);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+      }
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 32px;
+        height: 1.5px;
+        background: var(--accent);
+      }
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(4.5rem, 10vw, 12rem);
+        line-height: 0.88;
+        letter-spacing: 0.01em;
+        color: #fff;
+        opacity: 0;
+        animation: fadeUp 0.9s var(--ease) 0.45s forwards;
+      }
+      .hero-title em {
+        color: var(--accent);
+        font-style: normal;
+      }
+      .hero-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 48px;
+        opacity: 0;
+        animation: fadeUp 0.9s var(--ease) 0.65s forwards;
+      }
+      .hero-desc {
+        font-size: 1.1rem;
+        line-height: 1.75;
+        color: var(--muted);
+        max-width: 480px;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 48px;
+      }
+      .hero-stat-num {
+        font-family: var(--font-display);
+        font-size: 2.8rem;
+        color: var(--accent);
+        line-height: 1;
+      }
+      .hero-stat-label {
+        font-family: var(--font-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .hero-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(to right, var(--accent), transparent 60%);
+        margin-top: 40px;
+        opacity: 0;
+        animation: fadeUp 0.9s var(--ease) 0.8s forwards;
+      }
+
+      /* ── SHARED ── */
+      section {
+        padding: 120px 48px;
+      }
+      .section-label {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--accent);
+      }
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 5vw, 5.5rem);
+        line-height: 0.95;
+        letter-spacing: 0.01em;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+      .section-sub {
+        font-size: 1rem;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 480px;
+        margin-bottom: 64px;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s var(--ease),
+          transform 0.8s var(--ease);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .stagger > * {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s var(--ease),
+          transform 0.6s var(--ease);
+      }
+      .stagger.visible > *:nth-child(1) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0s;
+      }
+      .stagger.visible > *:nth-child(2) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.1s;
+      }
+      .stagger.visible > *:nth-child(3) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.2s;
+      }
+      .stagger.visible > *:nth-child(4) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.3s;
+      }
+      .stagger.visible > *:nth-child(5) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.4s;
+      }
+      .stagger.visible > *:nth-child(6) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.5s;
+      }
+      .btn-primary {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 14px 30px;
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        cursor: none;
+        display: inline-block;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 36px rgba(0, 255, 136, 0.25);
+      }
+      .btn-ghost {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 14px 30px;
+        display: inline-block;
+        background: transparent;
+        color: var(--text);
+        border: 1.5px solid var(--border);
+        cursor: none;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .btn-ghost:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #fff;
+      }
+
+      /* ── ORIGIN STORY ── */
+      #origin {
+        background: var(--bg2);
+      }
+      .origin-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        align-items: center;
+      }
+      .origin-visual {
+        position: relative;
+        aspect-ratio: 4/5;
+      }
+      .origin-canvas-wrap {
+        position: absolute;
+        inset: 0;
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+      .origin-canvas-wrap canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .origin-year-badge {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        background: var(--accent);
+        color: var(--bg);
+        font-family: var(--font-display);
+        font-size: 3rem;
+        letter-spacing: 0.04em;
+        padding: 24px 32px;
+        z-index: 2;
+      }
+      .origin-text h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 4vw, 4.5rem);
+        line-height: 0.95;
+        color: #fff;
+        margin-bottom: 32px;
+      }
+      .origin-text h2 span {
+        color: var(--accent);
+      }
+      .origin-text p {
+        font-size: 0.95rem;
+        color: var(--muted);
+        line-height: 1.85;
+        margin-bottom: 20px;
+      }
+      .origin-text p strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* ── TIMELINE ── */
+      #timeline {
+        background: var(--bg);
+      }
+      .timeline-wrap {
+        position: relative;
+      }
+      .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--border);
+        transform: translateX(-50%);
+      }
+      .timeline-line-fill {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 1px;
+        height: 0;
+        background: linear-gradient(to bottom, var(--accent), transparent);
+        transform: translateX(-50%);
+        transition: height 1.5s var(--ease);
+      }
+      .timeline-line-fill.active {
+        height: 100%;
+      }
+      .timeline-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 1fr 60px 1fr;
+        align-items: center;
+        gap: 0;
+        padding: 48px 0;
+        border-bottom: 1px solid var(--border);
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .timeline-item.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .timeline-item:last-child {
+        border-bottom: none;
+      }
+      .timeline-item:nth-child(odd) .tl-content {
+        text-align: right;
+        padding-right: 48px;
+      }
+      .timeline-item:nth-child(odd) .tl-empty {
+        order: 3;
+      }
+      .timeline-item:nth-child(even) .tl-content {
+        text-align: left;
+        padding-left: 48px;
+        order: 3;
+      }
+      .timeline-item:nth-child(even) .tl-empty {
+        order: 1;
+      }
+      .tl-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--accent);
+        margin: 0 auto;
+        position: relative;
+        box-shadow: 0 0 16px rgba(0, 255, 136, 0.4);
+        order: 2;
+        transition: background 0.3s;
+      }
+      .timeline-item.visible .tl-dot {
+        background: var(--accent);
+      }
+      .tl-year {
+        font-family: var(--font-display);
+        font-size: 3.2rem;
+        color: rgba(0, 255, 136, 0.2);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .tl-title {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        letter-spacing: 0.03em;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .tl-desc {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 340px;
+      }
+      .timeline-item:nth-child(odd) .tl-desc {
+        margin-left: auto;
+      }
+
+      /* ── VALUES ── */
+      #values {
+        background: var(--bg2);
+      }
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+      .value-card {
+        background: var(--bg2);
+        padding: 52px 44px;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+      .value-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), transparent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s var(--ease);
+      }
+      .value-card:hover {
+        background: var(--surface);
+      }
+      .value-card:hover::after {
+        transform: scaleX(1);
+      }
+      .value-num {
+        font-family: var(--font-display);
+        font-size: 5rem;
+        color: rgba(0, 255, 136, 0.08);
+        line-height: 1;
+        position: absolute;
+        top: 28px;
+        right: 28px;
+      }
+      .value-icon {
+        font-size: 2rem;
+        margin-bottom: 24px;
+      }
+      .value-title {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        letter-spacing: 0.03em;
+        color: #fff;
+        margin-bottom: 16px;
+      }
+      .value-desc {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      /* ── TEAM ── */
+      #team {
+        background: var(--bg);
+      }
+      .team-intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+        margin-bottom: 72px;
+      }
+      .team-grid-full {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      .team-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: transform 0.3s var(--ease);
+      }
+      .team-card:hover {
+        transform: translateY(-6px);
+      }
+      .team-img {
+        aspect-ratio: 3/4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 3rem;
+        color: rgba(255, 255, 255, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+      .team-img canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .team-img-text {
+        position: relative;
+        z-index: 1;
+      }
+      .team-info {
+        padding: 24px;
+      }
+      .team-name {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        letter-spacing: 0.04em;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .team-role {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+      .team-bio {
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+      .team-prev {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .team-prev::before {
+        content: "";
+        width: 16px;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* ── CULTURE STRIP ── */
+      #culture {
+        background: var(--bg2);
+        padding: 80px 0;
+        overflow: hidden;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .culture-ticker {
+        display: flex;
+        gap: 0;
+        animation: cultureScroll 30s linear infinite;
+        width: max-content;
+      }
+      .culture-item {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        white-space: nowrap;
+      }
+      .culture-word {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 5vw, 5rem);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 0 48px;
+        transition: color 0.3s;
+      }
+      .culture-word.c1 {
+        color: rgba(255, 255, 255, 0.08);
+      }
+      .culture-word.c2 {
+        color: var(--accent);
+      }
+      .culture-word.c3 {
+        color: rgba(255, 255, 255, 0.08);
+      }
+      .culture-sep {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        color: rgba(0, 255, 136, 0.2);
+        padding: 0 8px;
+      }
+      @keyframes cultureScroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ── NUMBERS ── */
+      #numbers {
+        background: var(--bg);
+      }
+      .numbers-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+      .number-item {
+        background: var(--bg);
+        padding: 52px 40px;
+        position: relative;
+        transition: background 0.3s;
+      }
+      .number-item:hover {
+        background: var(--surface);
+      }
+      .number-big {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 5vw, 6rem);
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .number-label {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+      .number-desc {
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* ── OFFICES ── */
+      #offices {
+        background: var(--bg2);
+      }
+      .offices-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+      .office-card {
+        background: var(--bg2);
+        padding: 52px 44px;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+      .office-card:hover {
+        background: var(--surface);
+      }
+      .office-canvas {
+        width: 100%;
+        height: 120px;
+        margin-bottom: 32px;
+        display: block;
+      }
+      .office-city {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        letter-spacing: 0.03em;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .office-tag {
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        margin-bottom: 20px;
+        display: inline-block;
+      }
+      .office-detail {
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      /* ── CTA ── */
+      #join {
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        text-align: center;
+        padding: 140px 48px;
+        position: relative;
+        overflow: hidden;
+      }
+      .join-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        height: 400px;
+        background: radial-gradient(
+          ellipse,
+          rgba(0, 255, 136, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .join-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 7vw, 8rem);
+        letter-spacing: 0.01em;
+        color: #fff;
+        margin-bottom: 24px;
+        position: relative;
+      }
+      .join-title span {
+        color: var(--accent);
+      }
+      .join-sub {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 460px;
+        margin: 0 auto 48px;
+      }
+      .join-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        padding: 80px 48px 40px;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 64px;
+      }
+      .footer-brand .nav-logo {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+        display: block;
+      }
+      .footer-brand p {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 280px;
+        margin-bottom: 28px;
+      }
+      .footer-social {
+        display: flex;
+        gap: 12px;
+      }
+      .social-btn {
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 0.8rem;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .social-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .footer-col h4 {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 24px;
+      }
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .footer-col ul li a {
+        font-size: 0.88rem;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .footer-col ul li a:hover {
+        color: var(--text);
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--border);
+        padding-top: 28px;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1100px) {
+        .team-grid-full {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .numbers-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .values-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .offices-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        nav {
+          padding: 16px 24px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .nav-menu-btn {
+          display: block;
+        }
+        section {
+          padding: 80px 24px;
+        }
+        #hero {
+          padding: 0 24px 60px;
+        }
+        .origin-layout,
+        .team-intro,
+        .footer-top {
+          grid-template-columns: 1fr;
+        }
+        .hero-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 32px;
+        }
+        .team-grid-full {
+          grid-template-columns: 1fr 1fr;
+        }
+        .values-grid,
+        .numbers-grid,
+        .offices-grid {
+          grid-template-columns: 1fr;
+        }
+        .timeline-item {
+          grid-template-columns: 1fr 40px;
+          gap: 24px;
+        }
+        .timeline-item:nth-child(odd) .tl-content,
+        .timeline-item:nth-child(even) .tl-content {
+          text-align: left;
+          padding-left: 0;
+          padding-right: 0;
+          order: 2;
+        }
+        .timeline-item:nth-child(odd) .tl-empty,
+        .timeline-item:nth-child(even) .tl-empty {
+          display: none;
+        }
+        .tl-dot {
+          order: 1;
+          margin: 0;
+        }
+        .timeline-line,
+        .timeline-line-fill {
+          left: 20px;
+        }
+        .tl-desc {
+          margin-left: 0 !important;
+          max-width: 100%;
+        }
+        .footer-top {
+          gap: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- NAV -->
+    <nav role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo">Dread Matrix</a>
+      <div class="nav-links">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#tech">Tech</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="about.html" class="active">About</a>
+        <a href="index.html#contact" class="nav-cta">Start Project</a>
+      </div>
+      <button class="nav-menu-btn" aria-label="Open menu">☰</button>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-year-marker" aria-hidden="true">2026</div>
+      <div class="hero-content">
+        <!-- Updated: location changed to Kochi, Kerala -->
+        <div class="hero-eyebrow">Our Story · Est. 2026 · Kochi, Kerala</div>
+        <h1 class="hero-title">
+          We Are<br />
+          <em>Dread Matrix.</em>
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-desc">
+            A software engineering agency built by builders — engineers from
+            Kerala's top tech talent pool who got tired of watching great ideas
+            fail due to poor execution. We fix that.
+          </p>
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-num">10+</div>
+              <div class="hero-stat-label">Engineers</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">5+</div>
+              <div class="hero-stat-label">Products Shipped</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">3</div>
+              <div class="hero-stat-label">Countries</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-divider"></div>
+      </div>
+    </section>
+
+    <!-- ORIGIN STORY -->
+    <section id="origin" aria-labelledby="origin-title">
+      <div class="origin-layout reveal">
+        <div class="origin-visual">
+          <div class="origin-canvas-wrap">
+            <canvas id="origin-canvas"></canvas>
+          </div>
+          <div class="origin-year-badge">EST.<br />2026</div>
+        </div>
+        <div class="origin-text">
+          <div class="section-label">Our Origin</div>
+          <h2 id="origin-title">Built by<br /><span>Builders.</span></h2>
+          <!-- Updated: founders and origin story localised to Kerala/Kochi -->
+          <p>
+            In 2026, <strong>Aghil Davis</strong> and
+            <strong>Paul Varghese</strong> left senior engineering roles with a
+            shared frustration: the companies with the best ideas almost never
+            had the engineering talent to execute them.
+          </p>
+          <p>
+            They founded Dread Matrix in Kochi, Kerala, with a single thesis — that
+            the gap between vision and working software shouldn't exist. Not for
+            ambitious startups, not for enterprises trying to modernise, not for
+            anyone with the courage to build something new.
+          </p>
+          <p>
+            Rooted in God's Own Country and reaching global markets, we're a
+            tight team of elite engineers in the heart of Kerala's growing tech
+            ecosystem — with ambitions to expand across every major vertical and
+            time zone.
+          </p>
+          <br />
+          <div style="display: flex; gap: 16px; flex-wrap: wrap">
+            <a href="index.html#work" class="btn-primary">See Our Work</a>
+            <a href="index.html#contact" class="btn-ghost">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" aria-labelledby="timeline-title">
+      <div class="reveal">
+        <div class="section-label">Milestones</div>
+        <h2 class="section-title" id="timeline-title">Our Journey</h2>
+        <p class="section-sub">
+          The beginning of something big — built with precision from day one in
+          Kochi.
+        </p>
+      </div>
+      <div class="timeline-wrap">
+        <div class="timeline-line"></div>
+        <div class="timeline-line-fill" id="tl-fill"></div>
+        <div class="timeline-items">
+          <div class="timeline-item">
+            <div class="tl-content">
+              <div class="tl-year">2026</div>
+              <!-- Updated: founded in Kochi, Kerala -->
+              <div class="tl-title">Founded in Kochi</div>
+              <p class="tl-desc">
+                Aghil and Paul leave top tech roles with a waiting list of early
+                clients. The first office: a co-working space in Kakkanad, Kochi
+                — right in the heart of Kerala's tech corridor.
+              </p>
+            </div>
+            <div class="tl-dot"></div>
+            <div class="tl-empty"></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-empty"></div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-year">2026</div>
+              <div class="tl-title">First Products Ship</div>
+              <p class="tl-desc">
+                Dread Matrix delivers its first wave of products to early clients —
+                on time, on spec, and built to scale. Word spreads fast across
+                Kerala's startup community. The pipeline fills before we finish
+                onboarding.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-content">
+              <div class="tl-year">2026</div>
+              <div class="tl-title">Team Grows to 10+</div>
+              <p class="tl-desc">
+                We bring on elite engineers from Kerala's top institutions and
+                beyond, establishing our core engineering practices, code
+                standards, and the 2-week sprint methodology that defines how we
+                work.
+              </p>
+            </div>
+            <div class="tl-dot"></div>
+            <div class="tl-empty"></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-empty"></div>
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-year">2026–</div>
+              <div class="tl-title">What's Next</div>
+              <!-- Updated: expansion mention changed from London to Bangalore/Dubai which are more relevant for a Kerala company -->
+              <p class="tl-desc">
+                Scaling our AI Integration practice, expanding to Bangalore and
+                Dubai, and building the next generation of scalable software for
+                the next generation of companies. The journey has just begun.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section id="values" aria-labelledby="values-title">
+      <div class="reveal">
+        <div class="section-label">What We Believe</div>
+        <h2 class="section-title" id="values-title">Our Values</h2>
+        <p class="section-sub">
+          The principles that guide every line of code we write and every
+          decision we make.
+        </p>
+      </div>
+      <div class="values-grid stagger reveal">
+        <div class="value-card">
+          <div class="value-num">01</div>
+          <div class="value-icon">⚡</div>
+          <div class="value-title">Velocity Without Compromise</div>
+          <p class="value-desc">
+            Speed and quality aren't opposites. We've built systems to ship fast
+            — 2-week sprints, continuous deployment, automated testing — without
+            cutting corners that haunt you later.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">02</div>
+          <div class="value-icon">🎯</div>
+          <div class="value-title">Outcomes, Not Outputs</div>
+          <p class="value-desc">
+            We measure success by the business results our code produces — not
+            lines written or tickets closed. If a simpler solution achieves the
+            goal, that's what we build.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">03</div>
+          <div class="value-icon">🔍</div>
+          <div class="value-title">Radical Transparency</div>
+          <p class="value-desc">
+            No hidden costs, no scope creep surprises, no bullshit. You see
+            every commit, every decision, and every trade-off in real time.
+            Ownership means honesty.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">04</div>
+          <div class="value-icon">🛠</div>
+          <div class="value-title">Engineer-Led Culture</div>
+          <p class="value-desc">
+            Decisions are made by engineers who understand the codebase, not by
+            project managers playing telephone. Technical excellence starts at
+            the top and flows everywhere.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">05</div>
+          <div class="value-icon">🌍</div>
+          <div class="value-title">Globally Distributed, Locally Sharp</div>
+          <p class="value-desc">
+            Our distributed model gives us broad reach and diverse perspectives
+            — but we stay embedded enough in your time zone to never feel like
+            an outsourced team.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">06</div>
+          <div class="value-icon">♾</div>
+          <div class="value-title">Built to Last</div>
+          <p class="value-desc">
+            We write code like we'll have to maintain it forever — because
+            sometimes we do, and because you'll have to. Clean architecture,
+            thorough docs, zero lock-in.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE TICKER -->
+    <div id="culture" aria-hidden="true">
+      <div class="culture-ticker">
+        <div class="culture-item">
+          <span class="culture-word c1">PRECISION</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c2">VELOCITY</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c1">OWNERSHIP</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c3">CRAFT</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c1">INTEGRITY</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c2">SCALE</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c1">CLARITY</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c3">IMPACT</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <!-- duplicate -->
+        <div class="culture-item">
+          <span class="culture-word c1">PRECISION</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c2">VELOCITY</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c1">OWNERSHIP</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c3">CRAFT</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c1">INTEGRITY</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c2">SCALE</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c1">CLARITY</span
+          ><span class="culture-sep">·</span>
+        </div>
+        <div class="culture-item">
+          <span class="culture-word c3">IMPACT</span
+          ><span class="culture-sep">·</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM -->
+    <section id="team" aria-labelledby="team-title">
+      <div class="team-intro reveal">
+        <div>
+          <div class="section-label">The People</div>
+          <h2 class="section-title" id="team-title">Leadership</h2>
+        </div>
+        <!-- Updated: team intro copy adjusted -->
+        <p class="section-sub" style="margin-bottom: 0">
+          Engineers rooted in Kerala's finest technical talent, with experience
+          across the global tech industry. People who've shipped products at
+          scale — and chose to build something new, right here from Kochi.
+        </p>
+      </div>
+      <div class="team-grid-full stagger reveal">
+        <div class="team-card">
+          <div
+            class="team-img"
+            style="background: linear-gradient(135deg, #0a1a2a, #1a3a4a)"
+          >
+            <canvas class="team-canvas" id="tc1"></canvas>
+            <span class="team-img-text">AD</span>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Aghil Davis</div>
+            <div class="team-role">CEO & Co-Founder</div>
+            <!-- Updated: bio keeps name, role adjusted to be realistic for a Kerala-based company -->
+            <p class="team-bio">
+              Led engineering teams building large-scale platforms for millions
+              of users. Founded Dread Matrix in 2026 to bring world-class engineering
+              discipline to ambitious companies — starting right from Kochi,
+              Kerala.
+            </p>
+            <div class="team-prev">Previously: Software Engineer ·</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div
+            class="team-img"
+            style="background: linear-gradient(135deg, #1a0a2e, #2d1060)"
+          >
+            <canvas class="team-canvas" id="tc2"></canvas>
+            <span class="team-img-text">PV</span>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Paul Varghese</div>
+            <div class="team-role">CTO & Co-Founder</div>
+            <p class="team-bio">
+              Built and architected high-throughput payment and fintech
+              infrastructure processing billions in transactions. At Dread Matrix, he
+              sets the engineering standards everything is measured against.
+            </p>
+            <div class="team-prev">Previously: Software Engineer ·</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div
+            class="team-img"
+            style="background: linear-gradient(135deg, #1a0a10, #3a0520)"
+          >
+            <canvas class="team-canvas" id="tc3"></canvas>
+            <span class="team-img-text">AK</span>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Akhil Krishnan</div>
+            <div class="team-role">Head of Engineering</div>
+            <p class="team-bio">
+              Platform engineer who has scaled checkout and commerce
+              infrastructure through peak traffic of 40k+ req/sec. Akhil runs
+              Dread Matrix's day-to-day engineering operations across all pods from
+              our Kochi HQ.
+            </p>
+            <div class="team-prev">Previously: Developer ·</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div
+            class="team-img"
+            style="background: linear-gradient(135deg, #0a1a0a, #0a2d10)"
+          >
+            <canvas class="team-canvas" id="tc4"></canvas>
+            <span class="team-img-text">SM</span>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Shajan Mathew</div>
+            <div class="team-role">Head of Design</div>
+            <p class="team-bio">
+              Design lead who has shaped the visual language of products used by
+              millions of people. Shajan bridges design and engineering to
+              ensure what we build from Kerala is both beautiful and performant.
+            </p>
+            <div class="team-prev">Previously: Designer ·</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUMBERS -->
+    <section id="numbers" aria-labelledby="numbers-title">
+      <div class="reveal">
+        <div class="section-label">By the Numbers</div>
+        <h2 class="section-title" id="numbers-title">Early Impact</h2>
+        <p class="section-sub">
+          What launching in 2026 from Kochi, Kerala with the right team looks
+          like from the start.
+        </p>
+      </div>
+      <div class="numbers-grid reveal">
+        <div class="number-item">
+          <div class="number-big">5+</div>
+          <div class="number-label">Products Shipped</div>
+          <p class="number-desc">
+            Across web, mobile, SaaS, and AI — from zero-to-one MVPs to focused
+            platform builds for our earliest clients.
+          </p>
+        </div>
+        <div class="number-item">
+          <div class="number-big">100%</div>
+          <div class="number-label">Client Retention Rate</div>
+          <p class="number-desc">
+            Every client we've worked with has come back for more. We intend to
+            keep it that way — the number we're building everything around.
+          </p>
+        </div>
+        <div class="number-item">
+          <div class="number-big">10+</div>
+          <div class="number-label">Engineers Onboard</div>
+          <p class="number-desc">
+            A tight, senior team — no juniors, no bloat. Every engineer at
+            Dread Matrix has shipped production systems at scale before joining.
+          </p>
+        </div>
+        <div class="number-item">
+          <div class="number-big">0</div>
+          <div class="number-label">Critical Bugs in Production</div>
+          <p class="number-desc">
+            The number of P0 bugs that have caused client downtime post-launch.
+            We take that seriously from day one.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFICES -->
+    <section id="offices" aria-labelledby="offices-title">
+      <div class="reveal">
+        <div class="section-label">Where We Are</div>
+        <h2 class="section-title" id="offices-title">Our Base</h2>
+        <!-- Updated: HQ description -->
+        <p class="section-sub">
+          Headquartered in Kochi, Kerala. Remote-first by design, embedded by
+          commitment.
+        </p>
+      </div>
+      <div class="offices-grid stagger reveal">
+        <div class="office-card">
+          <canvas class="office-canvas" id="oc1"></canvas>
+          <!-- Updated: Kochi HQ with real address area -->
+          <div class="office-city">Kochi</div>
+          <div class="office-tag">HQ · IST (UTC+5:30)</div>
+          <p class="office-detail">
+            Kakkanad Tech Park, Suite 400<br />Kochi, Kerala 682 030<br /><br />
+            Home to our founding team, product leadership, and core engineering
+            group. This is where Dread Matrix was born in 2026 — in God's Own
+            Country.
+          </p>
+        </div>
+        <div class="office-card">
+          <canvas class="office-canvas" id="oc2"></canvas>
+          <div class="office-city">Remote</div>
+          <div class="office-tag">Distributed · Global</div>
+          <p class="office-detail">
+            Engineers across multiple time zones<br />Async-first,
+            sprint-aligned<br /><br />
+            Our distributed engineers operate globally under a unified workflow
+            — no drop in quality, no loss of velocity.
+          </p>
+        </div>
+        <div class="office-card">
+          <canvas class="office-canvas" id="oc3"></canvas>
+          <!-- Updated: expansion target changed to Bangalore (more realistic for a Kerala company) -->
+          <div class="office-city">Coming Soon</div>
+          <div class="office-tag">Expansion Hub · 2027</div>
+          <p class="office-detail">
+            Bangalore expansion planned for 2027<br /><br />
+            As our client base grows across India and the Gulf, we're building
+            toward a dedicated hub in Bangalore to serve our expanding network.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="join" aria-label="Call to action">
+      <div class="join-glow"></div>
+      <div class="reveal">
+        <h2 class="join-title">Ready to<br /><span>Build Together?</span></h2>
+        <p class="join-sub">
+          Whether you're a seed-stage startup or an enterprise, if you're
+          building something ambitious, we want to talk.
+        </p>
+        <div class="join-actions">
+          <a href="index.html#contact" class="btn-primary">Start a Project →</a>
+          <a href="mailto:hello@Dread Matrix.dev" class="btn-ghost"
+            >info@dreadmatrix.com</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer role="contentinfo">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">Dread Matrix</a>
+          <p>
+            Engineering performance-driven platforms, SaaS products, and
+            commerce systems built to scale. Precision code for ambitious
+            companies.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-btn" aria-label="GitHub">GH</a>
+            <a href="#" class="social-btn" aria-label="Dribbble">Dr</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Web Platforms</a></li>
+            <li><a href="#services">SaaS Products</a></li>
+            <li><a href="#services">Mobile Apps</a></li>
+            <li><a href="#services">Cloud & DevOps</a></li>
+            <li><a href="#services">E-Commerce</a></li>
+            <li><a href="#services">AI Integration</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#work">Case Studies</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="mailto:info@dreadmatrix.com">info@dreadmatrix.com</a>
+            </li>
+            <li><a href="tel:+14155550198">+91 70125 51854</a></li>
+            <li><a href="#">Start a Project</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Dread Matrix Software Inc. All rights reserved.</span>
+        <span>Engineered with precision.</span>
+      </div>
+    </footer>
+
+    <script>
+      /* ── Cursor ── */
+      const dot = document.getElementById("cursor-dot");
+      const ring = document.getElementById("cursor-ring");
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+      });
+      (function animCursor() {
+        dot.style.left = mx + "px";
+        dot.style.top = my + "px";
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + "px";
+        ring.style.top = ry + "px";
+        requestAnimationFrame(animCursor);
+      })();
+
+      /* ── Hero canvas — geometric grid ── */
+      (function () {
+        const cv = document.getElementById("hero-canvas");
+        const ctx = cv.getContext("2d");
+        let W, H;
+        function resize() {
+          W = cv.width = cv.offsetWidth;
+          H = cv.height = cv.offsetHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        const pts = [];
+        function init() {
+          pts.length = 0;
+          const cols = Math.floor(W / 60),
+            rows = Math.floor(H / 60);
+          for (let i = 0; i <= cols; i++)
+            for (let j = 0; j <= rows; j++) {
+              pts.push({
+                x: i * (W / cols),
+                y: j * (H / rows),
+                ox: i * (W / cols),
+                oy: j * (H / rows),
+                phase: Math.random() * Math.PI * 2,
+                speed: Math.random() * 0.5 + 0.3,
+              });
+            }
+        }
+        resize();
+        init();
+
+        let t = 0;
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          t += 0.008;
+          const cols = Math.floor(W / 60) + 1;
+
+          pts.forEach((p) => {
+            p.x = p.ox + Math.sin(t * p.speed + p.phase) * 6;
+            p.y = p.oy + Math.cos(t * p.speed * 0.7 + p.phase) * 4;
+          });
+
+          const rows = Math.floor(H / 60) + 1;
+          ctx.lineWidth = 0.5;
+          for (let i = 0; i < pts.length; i++) {
+            const p = pts[i];
+            if (i % cols < cols - 1) {
+              const next = pts[i + 1];
+              const dist = Math.hypot(p.x - W / 2, p.y - H / 2) / (W * 0.8);
+              const a = Math.max(0, 0.08 - dist * 0.05);
+              ctx.strokeStyle = `rgba(0,255,136,${a})`;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(next.x, next.y);
+              ctx.stroke();
+            }
+            if (i + cols < pts.length) {
+              const below = pts[i + cols];
+              const dist = Math.hypot(p.x - W / 2, p.y - H / 2) / (W * 0.8);
+              const a = Math.max(0, 0.08 - dist * 0.05);
+              ctx.strokeStyle = `rgba(0,255,136,${a})`;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(below.x, below.y);
+              ctx.stroke();
+            }
+          }
+
+          pts.forEach((p, i) => {
+            if (i % 11 === 0) {
+              const glow = 0.5 + 0.5 * Math.sin(t * 2 + p.phase);
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, 2 * glow + 0.5, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(0,255,136,${0.3 * glow})`;
+              ctx.fill();
+            }
+          });
+
+          const g = ctx.createRadialGradient(
+            W * 0.1,
+            H * 0.8,
+            0,
+            W * 0.1,
+            H * 0.8,
+            W * 0.5,
+          );
+          g.addColorStop(0, "rgba(0,255,136,0.04)");
+          g.addColorStop(1, "transparent");
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, W, H);
+
+          requestAnimationFrame(draw);
+        }
+        draw();
+      })();
+
+      /* ── Origin canvas ── */
+      (function () {
+        const cv = document.getElementById("origin-canvas");
+        const ctx = cv.getContext("2d");
+        function resizeCanvas() {
+          const rect = cv.getBoundingClientRect();
+          cv.width = rect.width;
+          cv.height = rect.height;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+        const W = cv.width,
+          H = cv.height;
+
+        const paths = [];
+        for (let i = 0; i < 18; i++) {
+          const x = Math.random() * W,
+            y = Math.random() * H;
+          const segs = [];
+          let cx = x,
+            cy = y;
+          for (let s = 0; s < Math.floor(Math.random() * 5) + 2; s++) {
+            const dir = Math.floor(Math.random() * 4);
+            const len = Math.floor(Math.random() * 80) + 20;
+            if (dir === 0) cy -= len;
+            else if (dir === 1) cy += len;
+            else if (dir === 2) cx += len;
+            else cx -= len;
+            segs.push({ x: cx, y: cy });
+          }
+          paths.push({
+            start: { x, y },
+            segs,
+            progress: 0,
+            speed: Math.random() * 0.003 + 0.001,
+            delay: Math.random() * 200,
+          });
+        }
+
+        const nodes = Array.from({ length: 24 }, () => ({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 4 + 2,
+          pulse: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.03 + 0.01,
+        }));
+
+        let t = 0;
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          ctx.fillStyle = "#070e1c";
+          ctx.fillRect(0, 0, W, H);
+
+          ctx.strokeStyle = "rgba(0,255,136,0.04)";
+          ctx.lineWidth = 0.5;
+          for (let x = 0; x < W; x += 40) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, H);
+            ctx.stroke();
+          }
+          for (let y = 0; y < H; y += 40) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(W, y);
+            ctx.stroke();
+          }
+
+          paths.forEach((p) => {
+            if (t < p.delay) return;
+            p.progress = Math.min(1, p.progress + p.speed);
+            ctx.beginPath();
+            ctx.moveTo(p.start.x, p.start.y);
+            const totalLen = p.segs.length;
+            const drawn = p.progress * totalLen;
+            let prev = p.start;
+            p.segs.forEach((seg, i) => {
+              if (i < Math.floor(drawn)) {
+                ctx.lineTo(seg.x, seg.y);
+                prev = seg;
+              } else if (i === Math.floor(drawn)) {
+                const frac = drawn - Math.floor(drawn);
+                ctx.lineTo(
+                  prev.x + (seg.x - prev.x) * frac,
+                  prev.y + (seg.y - prev.y) * frac,
+                );
+              }
+            });
+            ctx.strokeStyle = "rgba(0,255,136,0.22)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          });
+
+          nodes.forEach((n) => {
+            n.pulse += n.speed;
+            const glow = 0.5 + 0.5 * Math.sin(n.pulse);
+            const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4);
+            g.addColorStop(0, `rgba(0,255,136,${0.4 * glow})`);
+            g.addColorStop(1, "transparent");
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r * 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r * glow * 0.6, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0,255,136,${0.6 + 0.4 * glow})`;
+            ctx.fill();
+          });
+
+          const v = ctx.createRadialGradient(
+            W / 2,
+            H / 2,
+            H * 0.2,
+            W / 2,
+            H / 2,
+            H * 0.8,
+          );
+          v.addColorStop(0, "transparent");
+          v.addColorStop(1, "rgba(7,14,28,0.6)");
+          ctx.fillStyle = v;
+          ctx.fillRect(0, 0, W, H);
+
+          t++;
+          requestAnimationFrame(draw);
+        }
+        draw();
+      })();
+
+      /* ── Team portrait canvases ── */
+      (function () {
+        const configs = [
+          {
+            id: "tc1",
+            color1: "rgba(0,255,136,0.15)",
+            color2: "rgba(0,100,60,0.1)",
+          },
+          {
+            id: "tc2",
+            color1: "rgba(124,58,237,0.2)",
+            color2: "rgba(60,0,120,0.1)",
+          },
+          {
+            id: "tc3",
+            color1: "rgba(244,63,94,0.15)",
+            color2: "rgba(100,0,30,0.1)",
+          },
+          {
+            id: "tc4",
+            color1: "rgba(0,255,136,0.12)",
+            color2: "rgba(0,80,30,0.08)",
+          },
+        ];
+        configs.forEach((cfg) => {
+          const cv = document.getElementById(cfg.id);
+          if (!cv) return;
+          cv.width = cv.offsetWidth || 280;
+          cv.height = cv.offsetHeight || 360;
+          const ctx = cv.getContext("2d");
+          const W = cv.width,
+            H = cv.height;
+          const pts = Array.from({ length: 30 }, () => ({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            r: Math.random() * 2 + 0.5,
+            phase: Math.random() * Math.PI * 2,
+          }));
+          let t = 0;
+          function draw() {
+            ctx.clearRect(0, 0, W, H);
+            t += 0.01;
+            pts.forEach((p) => {
+              p.x += p.vx;
+              p.y += p.vy;
+              if (p.x < 0 || p.x > W) p.vx *= -1;
+              if (p.y < 0 || p.y > H) p.vy *= -1;
+              p.phase += 0.02;
+              ctx.beginPath();
+              ctx.arc(
+                p.x,
+                p.y,
+                p.r * (0.8 + 0.2 * Math.sin(p.phase)),
+                0,
+                Math.PI * 2,
+              );
+              ctx.fillStyle = cfg.color1;
+              ctx.fill();
+            });
+            for (let i = 0; i < pts.length; i++)
+              for (let j = i + 1; j < pts.length; j++) {
+                const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+                if (d < 100) {
+                  ctx.beginPath();
+                  ctx.moveTo(pts[i].x, pts[i].y);
+                  ctx.lineTo(pts[j].x, pts[j].y);
+                  ctx.strokeStyle = `rgba(0,255,136,${(1 - d / 100) * 0.08})`;
+                  ctx.lineWidth = 0.5;
+                  ctx.stroke();
+                }
+              }
+            requestAnimationFrame(draw);
+          }
+          draw();
+        });
+      })();
+
+      /* ── Office canvases ── */
+      (function () {
+        function makeOffice(id, baseHue) {
+          const cv = document.getElementById(id);
+          if (!cv) return;
+          cv.width = cv.offsetWidth || 400;
+          cv.height = 120;
+          const ctx = cv.getContext("2d");
+          const W = cv.width,
+            H = cv.height;
+          const buildings = Array.from({ length: 18 }, () => ({
+            x: Math.random() * W,
+            w: Math.random() * 30 + 10,
+            h: Math.random() * H * 0.7 + H * 0.15,
+          })).sort((a, b) => a.x - b.x);
+
+          function draw() {
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = "#060d1c";
+            ctx.fillRect(0, 0, W, H);
+            const g = ctx.createLinearGradient(0, 0, 0, H);
+            g.addColorStop(0, `hsla(${baseHue},80%,55%,0.06)`);
+            g.addColorStop(1, "transparent");
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, W, H);
+            buildings.forEach((b) => {
+              ctx.fillStyle = "rgba(0,255,136,0.06)";
+              ctx.fillRect(b.x, H - b.h, b.w, b.h);
+              ctx.strokeStyle = "rgba(0,255,136,0.15)";
+              ctx.lineWidth = 0.5;
+              ctx.strokeRect(b.x, H - b.h, b.w, b.h);
+              for (let wy = H - b.h + 6; wy < H - 4; wy += 8) {
+                for (let wx = b.x + 3; wx < b.x + b.w - 3; wx += 7) {
+                  if (Math.random() > 0.5) {
+                    ctx.fillStyle = `hsla(${baseHue},80%,55%,${Math.random() * 0.3 + 0.05})`;
+                    ctx.fillRect(wx, wy, 4, 4);
+                  }
+                }
+              }
+            });
+            const hg = ctx.createLinearGradient(0, H - 20, 0, H);
+            hg.addColorStop(0, `hsla(${baseHue},80%,55%,0.1)`);
+            hg.addColorStop(1, "transparent");
+            ctx.fillStyle = hg;
+            ctx.fillRect(0, H - 20, W, 20);
+          }
+          draw();
+        }
+        makeOffice("oc1", 153);
+        makeOffice("oc2", 220);
+        makeOffice("oc3", 175);
+      })();
+
+      /* ── Scroll reveal ── */
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+      /* ── Timeline items ── */
+      const tlObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.2 },
+      );
+      document
+        .querySelectorAll(".timeline-item")
+        .forEach((el) => tlObs.observe(el));
+
+      /* ── Timeline fill ── */
+      const fillObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting)
+              document.getElementById("tl-fill").classList.add("active");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      const tlWrap = document.querySelector(".timeline-wrap");
+      if (tlWrap) fillObs.observe(tlWrap);
+    </script>
+  </body>
+</html>
