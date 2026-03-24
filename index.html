@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" width="60" height="60" href="./images/favicon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      width="60"
+      height="60"
+      href="./images/favicon.png"
+    />
     <!-- ═══════════════ SEO META TAGS ═══════════════ -->
     <title>
       Dread Matrix — Engineering Scalable Software for the Modern Web
@@ -44,10 +50,7 @@
       name="twitter:description"
       content="Precision code for ambitious companies. Scalable platforms, SaaS, mobile apps."
     />
-    <meta
-      name="twitter:image"
-      content="https://dreadmatrix.dev/og-image.jpg"
-    />
+    <meta name="twitter:image" content="https://dreadmatrix.dev/og-image.jpg" />
 
     <!-- Structured Data / Schema.org -->
     <script type="application/ld+json">
@@ -247,11 +250,14 @@
         padding: 0 48px;
         overflow: hidden;
       }
+      /* Push hero content below the fixed nav */
       .hero-content {
         position: relative;
         z-index: 1;
         max-width: 700px;
+        padding-top: 100px; /* ← ADD THIS */
       }
+
       .hero-eyebrow {
         display: flex;
         align-items: center;
@@ -264,12 +270,14 @@
         margin-bottom: 28px;
         opacity: 0;
         animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+        white-space: nowrap;
       }
       .hero-eyebrow::before {
         content: "";
         width: 32px;
         height: 1.5px;
         background: var(--accent);
+        flex-shrink: 0; /* ← ADD THIS */
       }
       .hero-title {
         font-family: var(--font-display);
@@ -1343,6 +1351,10 @@
         }
         .work-card:first-child {
           grid-column: span 1;
+        }
+        .hero-eyebrow {
+          font-size: 0.58rem;
+          letter-spacing: 0.12em;
         }
         .hero-title {
           font-size: 3.5rem;
